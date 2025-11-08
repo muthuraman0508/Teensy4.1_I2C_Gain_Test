@@ -40,13 +40,13 @@ void setup()
 }
 void loop()
 {
-  playSdWav1.play("Invalid_entry.wav");
+  playSdWav1.play("buzzer.wav");
   delay(200);
   while (playSdWav1.isPlaying())
     ;
   Serial.println("paly has done");
   delay(2000);
-  playSdWav1.play("new_your_ticket_has_been_validated.wav");
+  playSdWav1.play("beep.wav");
   delay(200);
   while (playSdWav1.isPlaying())
     ;
