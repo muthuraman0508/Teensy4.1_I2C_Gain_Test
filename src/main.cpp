@@ -1,6 +1,9 @@
 #include <Audio.h>
 #include <Wire.h>
 #include <SD.h>
+// #include <USBHost_t36.h>
+// USBHost myusb;
+
 #include <SerialFlash.h>
 
 // GUItool: begin automatically generated code
@@ -13,11 +16,16 @@ AudioConnection patchCord2(mixer1, 0, i2s2_1, 0);
 #define SDCARD_CS_PIN BUILTIN_SDCARD
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
+  Serial3.begin(9600);
   delay(400);
+  // myusb.begin();
   while (!Serial && millis() < 3000)
     ;
-
+  pinMode(6, OUTPUT);
+  digitalWrite(6, HIGH);
+  pinMode(7, OUTPUT);
+  digitalWrite(7, HIGH);
   AudioMemory(8);
   delay(200);
   if (!SD.begin(SDCARD_CS_PIN))
@@ -32,10 +40,21 @@ void setup()
 }
 void loop()
 {
-  playSdWav1.play("SDTEST1.wav");
+  playSdWav1.play("Invalid_entry.wav");
   delay(200);
   while (playSdWav1.isPlaying())
     ;
   Serial.println("paly has done");
-  delay(100);
+  delay(2000);
+  playSdWav1.play("new_your_ticket_has_been_validated.wav");
+  delay(200);
+  while (playSdWav1.isPlaying())
+    ;
+  // Serial.println("paly has done");
+  // playSdWav1.play("beep.wav");
+  // delay(200);
+  // while (playSdWav1.isPlaying())
+  //   ;
+  // Serial.println("paly has done");
+  delay(5000);
 }
